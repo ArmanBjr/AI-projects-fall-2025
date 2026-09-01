@@ -72,7 +72,8 @@ Local reference materials (`Expect/`, `expected/`, `strawberry/`) are kept on di
 ## Author
 
 **Arman Bijari** — [GitHub](https://github.com/ArmanBjr)
-**Reza Ferasati**
+
+**Reza Ferasati** _ [GitHub](https://github.com/Rfarasati)
 ## License
 
 Educational archive — provided for portfolio reference. Course materials © Ferdowsi University of Mashhad.
