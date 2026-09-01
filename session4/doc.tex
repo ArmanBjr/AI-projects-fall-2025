@@ -1,0 +1,139 @@
+% !TEX TS-program = pdflatex
+\documentclass[11pt,a4paper]{article}
+
+% ---------- Minimal, GitHub-friendly setup ----------
+\usepackage[utf8]{inputenc}   % for pdflatex
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[margin=1in]{geometry}
+\usepackage{parskip}          % space between paragraphs, no indents
+\usepackage{hyperref}         % clickable links
+\usepackage{enumitem}         % compact lists
+\usepackage{xcolor}
+\usepackage{graphicx}
+
+% ---------- Code listings (lightweight) ----------
+\usepackage{listings}
+\lstdefinestyle{ghpython}{
+	language=Python,
+	basicstyle=\ttfamily\small,
+	numbers=left,
+	numberstyle=\tiny,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=single,
+	framerule=0.4pt,
+	tabsize=2,
+	upquote=true,
+	keywordstyle=\color{blue!60!black}\bfseries,
+	commentstyle=\color{gray!70},
+	stringstyle=\color{green!40!black}
+}
+\lstset{style=ghpython}
+
+% ---------- Safe inline code macro (handles underscores) ----------
+\newcommand{\code}[1]{\texttt{\detokenize{#1}}}
+
+% ---------- Handy helpers ----------
+\newcommand{\func}[1]{\texttt{#1()}}
+\newcommand{\class}[1]{\texttt{#1}}
+
+% ---------- Metadata ----------
+\title{\textbf{GA Sudoku Solver (PyGAD)}\\
+	\large Minimal Documentation}
+\author{Project Documentation}
+\date{\today}
+
+\begin{document}
+	\maketitle
+
+	\begin{center}
+		\vspace{-0.5em}
+		\small
+		Repository: \href{github.com/ArmanBjr/Artificial_Intelligence-Course}{https://github.com/ArmanBjr/Artificial\_Intelligence-Course} \\
+		Document version: \today
+	\end{center}
+
+	\hrule
+	\vspace{0.8em}
+
+	\begin{abstract}
+		This document provides a concise, contributor-facing overview of the Sudoku solver implemented with a Genetic Algorithm (PyGAD). It focuses on the important public functions and how they fit together. The style and package set are kept lightweight for GitHub repositories.
+	\end{abstract}
+
+	\vspace{0.5em}
+	\tableofcontents
+	\vspace{0.8em}
+	\hrule
+	\vspace{1.2em}
+
+	% =========================
+	\section{Overall Overview}
+	% =========================
+	This project solves Sudoku puzzles using a Genetic Algorithm (GA) built on \code{pygad}. Only the \emph{empty} cells are represented as genes; original clues remain fixed. The main ideas:
+
+	\begin{itemize}[leftmargin=1.2em]
+		\item \textbf{Per-box initialization:} Each chromosome starts with every 3$\times$3 box filled by its missing digits (shuffled), giving box-valid candidates from the beginning.
+		\item \textbf{Box-preserving operators:}
+		\begin{itemize}
+			\item \emph{Crossover} (\func{custom\_crossover}): offspring inherit entire 3$\times$3 boxes from parents.
+			\item \emph{Mutation} (\func{custom\_mutation}): swaps two genes within the same box, preserving the box’s multiset of digits.
+		\end{itemize}
+		\item \textbf{Fitness} (\func{fitness\_function}): penalizes duplicates across rows, columns, and boxes. The GA maximizes the negative penalty; a valid Sudoku yields fitness $=0$.
+		\item \textbf{Solver} (\func{solve}): configures and runs the GA (population, generations, selection, crossover/mutation hooks), then decodes the best chromosome back into a grid.
+	\end{itemize}
+
+	This box-aware design constrains search to mostly fixing row/column conflicts, improving stability and time-to-solution.
+
+	% =========================
+	\section{Quick Start }
+	% =========================
+	\begin{enumerate}[leftmargin=1.2em]
+		\item Install dependencies: \code{pygad}, \code{numpy}.
+		\item Choose a puzzle from \code{SUDOKU_EXAMPLES}.
+		\item Run \code{__main__} and inspect the output grid and fitness.
+	\end{enumerate}
+
+	% =========================
+	\section{Repository Structure }
+	% =========================
+	\begin{verbatim}
+			.
+			|-- session4/
+			|   |-- Sudoku.py
+			|   |-- sample/
+			|   |-- sudoku1.pdf
+			|   `-- sudoku2.pdf
+		\end{verbatim}
+
+
+	% =========================
+	\section{Key Components }
+	% =========================
+	\subsection{Class \class{SudokuSolver}}
+	\begin{itemize}[leftmargin=1.2em]
+		\item \func{solve} \dotfill GA configuration and execution (returns best grid and fitness).
+		\item \func{fitness\_function} \dotfill Negative penalty based on duplicates in rows, columns, and boxes.
+		\item \func{custom\_crossover} \dotfill Box-wise inheritance from parents.
+		\item \func{custom\_mutation} \dotfill In-box gene swap operator.
+	\end{itemize}
+
+	\subsection{Utilities}
+	\begin{itemize}[leftmargin=1.2em]
+		\item \code{decode_solution} \dotfill Map chromosome back to a 9$\times$9 grid.
+		\item \code{print_sudoku}, \code{analyze_solution} \dotfill I/O and simple validity checks.
+	\end{itemize}
+
+	% =========================
+	\section{Example Snippet }
+	% =========================
+	\begin{lstlisting}
+		solver = SudokuSolver(SUDOKU_EXAMPLES["expert"])
+		solution, fitness = solver.solve(num_generations=1000,
+		num_parents_mating=80,
+		sol_per_pop=400)
+	\end{lstlisting}
+
+\end{document}

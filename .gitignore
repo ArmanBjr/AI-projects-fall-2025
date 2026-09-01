@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+
+# OS / archive junk
+.DS_Store
+__MACOSX/
+Thumbs.db
+
+# Binaries & large archives
+*.zip
+*.pkl
+*.exe
+*.ppt
+*.pptx
+*.7z
+*.rar
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.toc
+*.fdb_latexmk
+*.fls
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local-only folders (not part of course archive)
+/Expect/
+/expected/
+/strawberry/
+/Artificial_Intelligence-Course/
+/tools/push_repo.py
+
+# Root clutter
+Codes.zip
+StrawberryProlog_*.exe
+Prolog-*.ppt
+.gitkeep
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,38 @@
+Testing Cake Problem (Plotting):
+Proposition Level 0:
+Propositions: ['Have(Cake)', '~Eaten(Cake)']
+Literal Mutexes: []
+Action Level 0:
+Actions: ['EatCake', 'Persist(Have(Cake))', 'Persist(~Eaten(Cake))']
+Action Mutexes: [('EatCake', 'Persist(~Eaten(Cake))'), ('Persist(Have(Cake))', 'EatCake')]
+Proposition Level 1:
+Propositions: ['Eaten(Cake)', 'Have(Cake)', '~Eaten(Cake)', '~Have(Cake)']
+Literal Mutexes: [('Have(Cake)', 'Eaten(Cake)'), ('Have(Cake)', '~Have(Cake)'), ('~Eaten(Cake)', 'Eaten(Cake)'), ('~Eaten(Cake)', '~Have(Cake)')]
+Action Level 1:
+Actions: ['BakeCake', 'EatCake', 'Persist(Eaten(Cake))', 'Persist(Have(Cake))', 'Persist(~Eaten(Cake))', 'Persist(~Have(Cake))']
+Action Mutexes: [('BakeCake', 'EatCake'), ('BakeCake', 'Persist(Have(Cake))'), ('BakeCake', 'Persist(~Eaten(Cake))'), ('BakeCake', 'Persist(~Have(Cake))'), ('EatCake', 'Persist(~Eaten(Cake))'), ('Persist(Eaten(Cake))', 'EatCake'), ('Persist(Eaten(Cake))', 'Persist(Have(Cake))'), ('Persist(Eaten(Cake))', 'Persist(~Eaten(Cake))'), ('Persist(Have(Cake))', 'EatCake'), ('Persist(Have(Cake))', 'Persist(~Have(Cake))'), ('Persist(~Have(Cake))', 'EatCake'), ('Persist(~Have(Cake))', 'Persist(~Eaten(Cake))')]
+Proposition Level 2:
+Propositions: ['Eaten(Cake)', 'Have(Cake)', '~Eaten(Cake)', '~Have(Cake)']
+Literal Mutexes: [('Have(Cake)', '~Have(Cake)'), ('~Eaten(Cake)', 'Eaten(Cake)'), ('~Eaten(Cake)', '~Have(Cake)')]
+
+Testing Cake Problem (Planning):
+Proposition Level 0:
+Propositions: ['Have(Cake)', '~Eaten(Cake)']
+Literal Mutexes: []
+Action Level 0:
+Actions: ['EatCake', 'Persist(Have(Cake))', 'Persist(~Eaten(Cake))']
+Action Mutexes: [('EatCake', 'Persist(~Eaten(Cake))'), ('Persist(Have(Cake))', 'EatCake')]
+Proposition Level 1:
+Propositions: ['Eaten(Cake)', 'Have(Cake)', '~Eaten(Cake)', '~Have(Cake)']
+Literal Mutexes: [('Have(Cake)', 'Eaten(Cake)'), ('Have(Cake)', '~Have(Cake)'), ('~Eaten(Cake)', 'Eaten(Cake)'), ('~Eaten(Cake)', '~Have(Cake)')]
+Action Level 1:
+Actions: ['BakeCake', 'EatCake', 'Persist(Eaten(Cake))', 'Persist(Have(Cake))', 'Persist(~Eaten(Cake))', 'Persist(~Have(Cake))']
+Action Mutexes: [('BakeCake', 'EatCake'), ('BakeCake', 'Persist(Have(Cake))'), ('BakeCake', 'Persist(~Eaten(Cake))'), ('BakeCake', 'Persist(~Have(Cake))'), ('EatCake', 'Persist(~Eaten(Cake))'), ('Persist(Eaten(Cake))', 'EatCake'), ('Persist(Eaten(Cake))', 'Persist(Have(Cake))'), ('Persist(Eaten(Cake))', 'Persist(~Eaten(Cake))'), ('Persist(Have(Cake))', 'EatCake'), ('Persist(Have(Cake))', 'Persist(~Have(Cake))'), ('Persist(~Have(Cake))', 'EatCake'), ('Persist(~Have(Cake))', 'Persist(~Eaten(Cake))')]
+Proposition Level 2:
+Propositions: ['Eaten(Cake)', 'Have(Cake)', '~Eaten(Cake)', '~Have(Cake)']
+Literal Mutexes: [('Have(Cake)', '~Have(Cake)'), ('~Eaten(Cake)', 'Eaten(Cake)'), ('~Eaten(Cake)', '~Have(Cake)')]
+Solution found (GraphPlanner): [['EatCake'], ['BakeCake']]
+Time taken by GraphPlanner: 0.45186472 seconds
+
+Solution using ForwardPlanner: ['EatCake', 'BakeCake']
+Time taken by ForwardPlanner: 0.00000000 seconds

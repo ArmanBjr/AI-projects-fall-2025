@@ -1,0 +1,134 @@
+%4021262459
+%4021262131
+
+
+name(arman).
+name(elham).
+name(hannane).
+name(amir).
+name(sara).
+
+% X1 is for arman
+% X2 is for elham 
+% X3 is for hannane
+% X4 is for amir
+% X5 is for sara
+% and Y's respectilvely
+
+
+
+distance(5).
+distance(8).
+distance(11).
+distance(14).
+distance(17).
+
+color(black).
+color(green).
+color(pink).
+color(silver).
+color(white).
+
+has_color(X, Y) :- name(X), color(Y).
+
+plane_distance(X, Y) :- name(X), distance(Y). 
+
+% rule_2 (Color, Distance)
+
+rule_2(Color, 8) :- Color \= silver.
+
+rule_2(_, Y) :- Y \= 8.
+
+% rule_3(Color, distance)
+rule_3(X, 14) :- X \= white.
+
+%rule_3(X5, Y5)
+%rule_3(X4, Y4)
+rule_3(white, Y) :- Y \= 14.
+
+% rule_4 (Color, Color, Distance, Distance)
+rule_4(white, black, Y1, Y2) :- Y1 is Y2 + 6.
+rule_4(X, _, _, _) :- X \= white.
+rule_4(_, X, _, _) :- X \= black.
+
+
+% rule_5 (Color, Distance)
+rule_5(Color, 5) :- Color = pink.
+
+rule_5(Y, X) :- X \= 5, Y \= pink.
+
+% rule_6(Color, distance, distance)
+
+rule_6(pink, Y1, Y2) :- Y1 > Y2.
+
+rule_6(X, _, _) :- X \= pink. 
+
+% rule_7(Color, Color)
+rule_7(Y1, Y2) :- Y1 = green ; Y2 = green.
+
+
+solution(X1,X2,X3,X4,X5, Y1,Y2,Y3,Y4,Y5) :-
+	 has_color(arman, X1), has_color(elham, X2), has_color(hannane, X3),
+	has_color(amir, X4), has_color(sara, X5),
+	X1 \= X2, X1 \= X3, X1 \= X4, X1 \= X5, X2 \= X3, X2 \= X4, X2 \= X5,
+		X3 \= X4, X3 \= X5, X4 \= X5,	
+	plane_distance(arman, Y1), plane_distance(elham, Y2), 
+	 plane_distance(hannane, Y3),  plane_distance(amir, Y4), 
+ 	 plane_distance(sara, Y5),
+	
+	Y1 \= Y2, Y1 \= Y3, Y1 \= Y4, Y1 \= Y5, Y2 \= Y3, Y2 \= Y4, Y2 \= Y5,
+		Y3 \= Y4, Y3 \= Y5, Y4 \= Y5, 
+
+	Y5 = 17, 
+	X3 \= pink, 
+	rule_2(X1, Y1), 
+	rule_2(X2, Y2), 
+	rule_2(X3, Y3),
+	rule_2(X4, Y4),
+	rule_2(X5, Y5), 
+	
+	rule_3(X4, Y4),
+	rule_3(X5, Y5),
+	
+	rule_4(X1, X2, Y1, Y2), 
+	rule_4(X1, X3, Y1, Y3), 
+	rule_4(X1, X4, Y1, Y4), 
+	rule_4(X1, X5, Y1, Y5),
+	rule_4(X2, X1, Y2, Y1), 
+	rule_4(X2, X3, Y2, Y3), 
+	rule_4(X2, X4, Y2, Y4),
+	rule_4(X2, X5, Y2, Y5), 
+	rule_4(X3, X1, Y3, Y1),
+	rule_4(X3, X2, Y3, Y2), 
+	rule_4(X3, X4, Y3, Y4),
+	rule_4(X3, X5, Y3, Y5),
+	rule_4(X4, X1, Y4, Y1),
+	rule_4(X4, X2, Y4, Y2),
+	rule_4(X4, X3, Y4, Y3),
+	rule_4(X4, X5, Y4, Y5),
+ 	rule_4(X5, X1, Y5, Y1), 
+	rule_4(X5, X2, Y5, Y2),
+	rule_4(X5, X3, Y5, Y3),
+	rule_4(X5, X4, Y5, Y4),
+
+	rule_5(X1, Y1), 
+	rule_5(X2, Y2), 
+	rule_5(X3, Y3), 
+	rule_5(X4, Y4), 
+	rule_5(X5, Y5),
+	
+	rule_6(X1, Y3, Y1),
+	rule_6(X2, Y3, Y2), 
+	rule_6(X4, Y3, Y4),
+	rule_6(X5, Y3, Y5),
+	
+	rule_7(X2, X4).
+
+
+
+?-solution(X1,X2,X3,X4,X5, Y1,Y2,Y3,Y4,Y5),
+write(arman), write(" color: "), write(X1), write(" dist: "), write(Y1), nl,
+write(elham), write(" color: "), write(X2), write(" dist: "), write(Y2), nl,
+write(hananeh), write(" color: "), write(X3), write(" dist: "), write(Y3), nl,
+write(amir), write(" color: "), write(X4), write(" dist: "), write(Y4), nl,
+write(sara), write(" color: "), write(X5), write(" dist: "), write(Y5), nl.
