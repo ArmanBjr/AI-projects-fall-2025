@@ -1,6 +1,6 @@
 # Artificial Intelligence — Course Code
 
-Archive of coursework and projects from the **Artificial Intelligence** course at Ferdowsi University of Mashhad (5th semester). Organized by session/topic.
+> Archive of coursework and projects from the **Artificial Intelligence** course at Ferdowsi University of Mashhad, Fall 2025 (5th semester). Organized by session/topic.
 
 ## Topics covered
 
