@@ -4,46 +4,44 @@ __pycache__/
 *.pyo
 .venv/
 venv/
+env/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Trained model artifacts
+*.pkl
 
 # OS / archive junk
 .DS_Store
 __MACOSX/
 Thumbs.db
+desktop.ini
 
-# Binaries & large archives
+# Archives & binaries
 *.zip
-*.pkl
+*.rar
+*.7z
 *.exe
 *.ppt
 *.pptx
-*.7z
-*.rar
 
 # LaTeX build artifacts
 *.aux
+*.fdb_latexmk
+*.fls
 *.log
 *.out
 *.synctex.gz
 *.toc
-*.fdb_latexmk
-*.fls
 
-# Jupyter
-.ipynb_checkpoints/
-
-# Local-only folders (not part of course archive)
+# Local-only reference material (not part of the published archive)
 /Expect/
 /expected/
 /strawberry/
 /Artificial_Intelligence-Course/
-/tools/push_repo.py
 
-# Root clutter
-Codes.zip
-StrawberryProlog_*.exe
-Prolog-*.ppt
-.gitkeep
-
-# IDE
+# Editors & tooling
 .vscode/
 .idea/
+.claude/

@@ -1,1 +1,0 @@
-?- ['E:/University/University_Subjects/5th/Artificial_Intelligence/Code/Prolog/Prolog2/Test.pl'].

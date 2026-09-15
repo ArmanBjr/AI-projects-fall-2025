@@ -1,0 +1,28 @@
+# Python 3.10+
+# Install with:  pip install -r requirements.txt
+
+# Core numerics & data
+numpy
+pandas
+scipy
+
+# Plotting
+matplotlib
+seaborn
+plotly
+
+# Notebooks (supervised-learning/)
+jupyter
+ipython
+scikit-learn
+pillow
+
+# Genetic algorithms (genetic-algorithms/)
+pygad
+
+# Planning graph visualisation (planning/graphplan/)
+networkx
+
+# Reinforcement learning (reinforcement-learning/)
+gymnasium
+minigrid

@@ -1,79 +1,105 @@
-# Artificial Intelligence — Course Code
+# AI Projects — Fall 2025
 
-> Archive of coursework and projects from the **Artificial Intelligence** course at Ferdowsi University of Mashhad, Fall 2025 (5th semester). Organized by session/topic.
+Worked implementations of classical Artificial Intelligence algorithms, built for the
+**Artificial Intelligence** course at Ferdowsi University of Mashhad (Fall 2025).
 
-## Topics covered
+Every algorithm here is implemented from scratch — no `scikit-learn` estimators standing in
+for the search, planning, or learning logic. The neural network is plain NumPy, the planners
+are hand-rolled STRIPS, and the RL agents implement their own update rules.
 
-| Session | Topic | Highlights |
-|---------|-------|------------|
-| `AI-graphicSearch/` | Uninformed & informed search | BFS, DFS, A*, block-world problem |
-| `view/` | Search visualizations | Interactive search demos |
-| `Session3/` | Search project variant | Graph search implementation |
-| `session4/` | Genetic algorithms | Sudoku solver + write-up |
-| `session5/` | Constraint satisfaction (CSP) | Course scheduling, map coloring |
-| `session6/` | Adversarial search | Minimax board game |
-| `SESSION7/` | Adversarial search (variant) | Extended minimax project |
-| `Session8/` | Fuzzy logic | Scholarship eligibility (`.fis`) |
-| `session9/` | Classical planning | Forward / backward planners |
-| `session10/` | GraphPlan | Planning graph, STRIPS-style domains |
-| `session11/` | Supervised learning I | Decision trees, linear regression |
-| `session12/` | Supervised learning II | MLP on Fashion MNIST |
-| `session13/` | MDPs | Value iteration, Tetris environment |
-| `session14/` | Reinforcement learning | Q-learning on MiniGrid |
-| `Prolog/` | Logic programming | Prolog exercises |
+## Contents
 
-## Requirements
+| Area | What's inside |
+|------|---------------|
+| [`search/`](search) | Uninformed, informed, adversarial and visualised search |
+| [`csp/`](csp) | Constraint-satisfaction solver + course scheduler and map colouring |
+| [`genetic-algorithms/`](genetic-algorithms) | Sudoku solver using a genetic algorithm |
+| [`fuzzy-logic/`](fuzzy-logic) | Fuzzy inference system for scholarship eligibility |
+| [`planning/`](planning) | Forward/backward STRIPS planners and GraphPlan |
+| [`supervised-learning/`](supervised-learning) | Decision trees, linear regression, NumPy MLP |
+| [`reinforcement-learning/`](reinforcement-learning) | Value iteration (MDP) and Q-learning |
+| [`prolog/`](prolog) | Logic programming: unification, resolution, graph search |
 
-Python 3.10+ recommended. Dependencies vary by session — common packages:
+## Highlights
 
-```bash
-pip install numpy pandas matplotlib jupyter ta gymnasium minigrid
-```
+- **A\*, IDA\* and RBFS** on a block-world puzzle, plus hill-climbing variants with random
+  restarts and stochastic selection — [`search/informed/`](search/informed)
+- **Othello with minimax + alpha–beta pruning** at depth 5 on an 8×8 board —
+  [`search/adversarial/`](search/adversarial)
+- **GraphPlan** with mutex computation and rendered planning graphs across four STRIPS
+  domains — [`planning/graphplan/`](planning/graphplan)
+- **Multi-layer perceptron written in NumPy** (manual forward/backward passes) trained on
+  Fashion-MNIST — [`supervised-learning/neural-networks/`](supervised-learning/neural-networks)
+- **Q-learning on MiniGrid DoorKey** with ε-greedy exploration and a saved policy —
+  [`reinforcement-learning/q-learning/`](reinforcement-learning/q-learning)
 
-Individual sessions may include their own `requirements.txt` (e.g. session14 Q-learning project).
+## Getting started
 
-## Running examples
-
-**Search (block world):**
-
-```bash
-cd AI-graphicSearch
-python main.py
-```
-
-**CSP course scheduler:**
+Python 3.10 or newer.
 
 ```bash
-cd session5/csp
-python main.py
-```
+git clone https://github.com/ArmanBjr/AI-projects-fall-2025.git
+cd AI-projects-fall-2025
 
-**Q-learning:**
+python -m venv .venv
+source .venv/bin/activate      # Windows: .venv\Scripts\activate
 
-```bash
-cd session14/Q-learning Project
 pip install -r requirements.txt
-python main.py
 ```
 
-**Jupyter notebooks** (session11–12): open `.ipynb` files in Jupyter Lab or VS Code.
+Each project is self-contained and run from its own directory:
+
+```bash
+# Informed search on the block-world puzzle
+cd search/informed && python main.py
+
+# Othello with alpha-beta pruning
+cd search/adversarial && python main.py
+
+# Course-scheduling CSP
+cd csp && python main.py
+
+# Q-learning on MiniGrid
+cd reinforcement-learning/q-learning && python main.py
+```
+
+Notebooks under `supervised-learning/` open directly in Jupyter or VS Code.
+
+The fuzzy-logic system (`fuzzy-logic/*.fis`) is a MATLAB/Octave Fuzzy Inference System and
+needs the MATLAB Fuzzy Logic Toolbox rather than Python.
 
 ## Repository layout
 
 ```
-AI-graphicSearch/     # Session 2 — search algorithms
-view/                 # Search demo scripts
-Session3/ … session14/
-Prolog/               # Prolog exercises
+search/
+  uninformed/      BFS, DFS, depth-limited, IDS, uniform-cost
+  informed/        Greedy best-first, A*, IDA*, RBFS, hill-climbing
+  adversarial/     Othello — minimax with alpha-beta pruning
+  visualizations/  Standalone reference implementations of graph search
+csp/               Constraint framework, course scheduler, map colouring
+genetic-algorithms/  Sudoku via genetic algorithm (+ LaTeX report)
+fuzzy-logic/       Scholarship eligibility inference system
+planning/
+  classical/       Forward and backward STRIPS planners
+  graphplan/       Planning graph, mutex reasoning, rendered graphs
+supervised-learning/
+  decision-trees/     Adult census income classification
+  linear-regression/  Fuel-efficiency regression on the mpg dataset
+  neural-networks/    NumPy MLP on Fashion-MNIST
+reinforcement-learning/
+  mdp/             Value iteration on a mini-Tetris environment
+  q-learning/      Q-learning agent on MiniGrid DoorKey
+prolog/            Logic programming exercises
 ```
 
-Local reference materials (`Expect/`, `expected/`, `strawberry/`) are kept on disk but not published in this repo.
+## Authors
 
-## Author
+- **Arman Bijari** — [@ArmanBjr](https://github.com/ArmanBjr)
+- **Reza Farasati** — [@Rfarasati](https://github.com/Rfarasati)
 
-**Arman Bijari** — [GitHub](https://github.com/ArmanBjr)
-
-**Reza Farasati** _ [GitHub](https://github.com/Rfarasati)
 ## License
 
-Educational archive — provided for portfolio reference. Course materials © Ferdowsi University of Mashhad.
+Source code is released under the [MIT License](LICENSE).
+
+Course handouts, problem statements and reference PDFs included for context remain the
+property of Ferdowsi University of Mashhad and are provided for educational reference only.
